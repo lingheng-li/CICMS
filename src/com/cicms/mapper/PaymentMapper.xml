@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cicms.mapper.PaymentMapper" >
+  <resultMap id="BaseResultMap" type="com.cicms.pojo.Payment" >
+    <id column="payNo" property="payno" jdbcType="VARCHAR" />
+    <result column="patientNo" property="patientno" jdbcType="VARCHAR" />
+    <result column="prescriptionNo" property="prescriptionno" jdbcType="VARCHAR" />
+    <result column="userName" property="username" jdbcType="VARCHAR" />
+    <result column="payTime" property="paytime" jdbcType="TIMESTAMP" />
+    <result column="payStatus" property="paystatus" jdbcType="INTEGER" />
+    <result column="payRemarks" property="payremarks" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    payNo, patientNo, prescriptionNo, userName, payTime, payStatus, payRemarks
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cicms.pojo.PaymentExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from payment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from payment
+    where payNo = #{payno,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from payment
+    where payNo = #{payno,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cicms.pojo.PaymentExample" >
+    delete from payment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cicms.pojo.Payment" >
+    insert into payment (payNo, patientNo, prescriptionNo, 
+      userName, payTime, payStatus, 
+      payRemarks)
+    values (#{payno,jdbcType=VARCHAR}, #{patientno,jdbcType=VARCHAR}, #{prescriptionno,jdbcType=VARCHAR}, 
+      #{username,jdbcType=VARCHAR}, #{paytime,jdbcType=TIMESTAMP}, #{paystatus,jdbcType=INTEGER}, 
+      #{payremarks,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cicms.pojo.Payment" >
+    insert into payment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="payno != null" >
+        payNo,
+      </if>
+      <if test="patientno != null" >
+        patientNo,
+      </if>
+      <if test="prescriptionno != null" >
+        prescriptionNo,
+      </if>
+      <if test="username != null" >
+        userName,
+      </if>
+      <if test="paytime != null" >
+        payTime,
+      </if>
+      <if test="paystatus != null" >
+        payStatus,
+      </if>
+      <if test="payremarks != null" >
+        payRemarks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="payno != null" >
+        #{payno,jdbcType=VARCHAR},
+      </if>
+      <if test="patientno != null" >
+        #{patientno,jdbcType=VARCHAR},
+      </if>
+      <if test="prescriptionno != null" >
+        #{prescriptionno,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="paytime != null" >
+        #{paytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paystatus != null" >
+        #{paystatus,jdbcType=INTEGER},
+      </if>
+      <if test="payremarks != null" >
+        #{payremarks,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cicms.pojo.PaymentExample" resultType="java.lang.Integer" >
+    select count(*) from payment
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update payment
+    <set >
+      <if test="record.payno != null" >
+        payNo = #{record.payno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.patientno != null" >
+        patientNo = #{record.patientno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.prescriptionno != null" >
+        prescriptionNo = #{record.prescriptionno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.username != null" >
+        userName = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.paytime != null" >
+        payTime = #{record.paytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.paystatus != null" >
+        payStatus = #{record.paystatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.payremarks != null" >
+        payRemarks = #{record.payremarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update payment
+    set payNo = #{record.payno,jdbcType=VARCHAR},
+      patientNo = #{record.patientno,jdbcType=VARCHAR},
+      prescriptionNo = #{record.prescriptionno,jdbcType=VARCHAR},
+      userName = #{record.username,jdbcType=VARCHAR},
+      payTime = #{record.paytime,jdbcType=TIMESTAMP},
+      payStatus = #{record.paystatus,jdbcType=INTEGER},
+      payRemarks = #{record.payremarks,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cicms.pojo.Payment" >
+    update payment
+    <set >
+      <if test="patientno != null" >
+        patientNo = #{patientno,jdbcType=VARCHAR},
+      </if>
+      <if test="prescriptionno != null" >
+        prescriptionNo = #{prescriptionno,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        userName = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="paytime != null" >
+        payTime = #{paytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="paystatus != null" >
+        payStatus = #{paystatus,jdbcType=INTEGER},
+      </if>
+      <if test="payremarks != null" >
+        payRemarks = #{payremarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where payNo = #{payno,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cicms.pojo.Payment" >
+    update payment
+    set patientNo = #{patientno,jdbcType=VARCHAR},
+      prescriptionNo = #{prescriptionno,jdbcType=VARCHAR},
+      userName = #{username,jdbcType=VARCHAR},
+      payTime = #{paytime,jdbcType=TIMESTAMP},
+      payStatus = #{paystatus,jdbcType=INTEGER},
+      payRemarks = #{payremarks,jdbcType=VARCHAR}
+    where payNo = #{payno,jdbcType=VARCHAR}
+  </update>
+</mapper>

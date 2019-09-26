@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cicms.mapper.FamilyMapper" >
+  <resultMap id="BaseResultMap" type="com.cicms.pojo.Family" >
+    <id column="homeNo" property="homeno" jdbcType="VARCHAR" />
+    <result column="homeName" property="homename" jdbcType="VARCHAR" />
+    <result column="homePhone" property="homephone" jdbcType="INTEGER" />
+    <result column="homeAddress" property="homeaddress" jdbcType="VARCHAR" />
+    <result column="doorNum" property="doornum" jdbcType="INTEGER" />
+    <result column="information" property="information" jdbcType="VARCHAR" />
+    <result column="attention" property="attention" jdbcType="VARCHAR" />
+    <result column="homeRemarks" property="homeremarks" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    homeNo, homeName, homePhone, homeAddress, doorNum, information, attention, homeRemarks
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cicms.pojo.FamilyExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from family
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from family
+    where homeNo = #{homeno,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from family
+    where homeNo = #{homeno,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cicms.pojo.FamilyExample" >
+    delete from family
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cicms.pojo.Family" >
+    insert into family (homeNo, homeName, homePhone, 
+      homeAddress, doorNum, information, 
+      attention, homeRemarks)
+    values (#{homeno,jdbcType=VARCHAR}, #{homename,jdbcType=VARCHAR}, #{homephone,jdbcType=INTEGER}, 
+      #{homeaddress,jdbcType=VARCHAR}, #{doornum,jdbcType=INTEGER}, #{information,jdbcType=VARCHAR}, 
+      #{attention,jdbcType=VARCHAR}, #{homeremarks,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cicms.pojo.Family" >
+    insert into family
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="homeno != null" >
+        homeNo,
+      </if>
+      <if test="homename != null" >
+        homeName,
+      </if>
+      <if test="homephone != null" >
+        homePhone,
+      </if>
+      <if test="homeaddress != null" >
+        homeAddress,
+      </if>
+      <if test="doornum != null" >
+        doorNum,
+      </if>
+      <if test="information != null" >
+        information,
+      </if>
+      <if test="attention != null" >
+        attention,
+      </if>
+      <if test="homeremarks != null" >
+        homeRemarks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="homeno != null" >
+        #{homeno,jdbcType=VARCHAR},
+      </if>
+      <if test="homename != null" >
+        #{homename,jdbcType=VARCHAR},
+      </if>
+      <if test="homephone != null" >
+        #{homephone,jdbcType=INTEGER},
+      </if>
+      <if test="homeaddress != null" >
+        #{homeaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="doornum != null" >
+        #{doornum,jdbcType=INTEGER},
+      </if>
+      <if test="information != null" >
+        #{information,jdbcType=VARCHAR},
+      </if>
+      <if test="attention != null" >
+        #{attention,jdbcType=VARCHAR},
+      </if>
+      <if test="homeremarks != null" >
+        #{homeremarks,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cicms.pojo.FamilyExample" resultType="java.lang.Integer" >
+    select count(*) from family
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update family
+    <set >
+      <if test="record.homeno != null" >
+        homeNo = #{record.homeno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.homename != null" >
+        homeName = #{record.homename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.homephone != null" >
+        homePhone = #{record.homephone,jdbcType=INTEGER},
+      </if>
+      <if test="record.homeaddress != null" >
+        homeAddress = #{record.homeaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.doornum != null" >
+        doorNum = #{record.doornum,jdbcType=INTEGER},
+      </if>
+      <if test="record.information != null" >
+        information = #{record.information,jdbcType=VARCHAR},
+      </if>
+      <if test="record.attention != null" >
+        attention = #{record.attention,jdbcType=VARCHAR},
+      </if>
+      <if test="record.homeremarks != null" >
+        homeRemarks = #{record.homeremarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update family
+    set homeNo = #{record.homeno,jdbcType=VARCHAR},
+      homeName = #{record.homename,jdbcType=VARCHAR},
+      homePhone = #{record.homephone,jdbcType=INTEGER},
+      homeAddress = #{record.homeaddress,jdbcType=VARCHAR},
+      doorNum = #{record.doornum,jdbcType=INTEGER},
+      information = #{record.information,jdbcType=VARCHAR},
+      attention = #{record.attention,jdbcType=VARCHAR},
+      homeRemarks = #{record.homeremarks,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cicms.pojo.Family" >
+    update family
+    <set >
+      <if test="homename != null" >
+        homeName = #{homename,jdbcType=VARCHAR},
+      </if>
+      <if test="homephone != null" >
+        homePhone = #{homephone,jdbcType=INTEGER},
+      </if>
+      <if test="homeaddress != null" >
+        homeAddress = #{homeaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="doornum != null" >
+        doorNum = #{doornum,jdbcType=INTEGER},
+      </if>
+      <if test="information != null" >
+        information = #{information,jdbcType=VARCHAR},
+      </if>
+      <if test="attention != null" >
+        attention = #{attention,jdbcType=VARCHAR},
+      </if>
+      <if test="homeremarks != null" >
+        homeRemarks = #{homeremarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where homeNo = #{homeno,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cicms.pojo.Family" >
+    update family
+    set homeName = #{homename,jdbcType=VARCHAR},
+      homePhone = #{homephone,jdbcType=INTEGER},
+      homeAddress = #{homeaddress,jdbcType=VARCHAR},
+      doorNum = #{doornum,jdbcType=INTEGER},
+      information = #{information,jdbcType=VARCHAR},
+      attention = #{attention,jdbcType=VARCHAR},
+      homeRemarks = #{homeremarks,jdbcType=VARCHAR}
+    where homeNo = #{homeno,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cicms.mapper.MedicineMapper" >
+  <resultMap id="BaseResultMap" type="com.cicms.pojo.Medicine" >
+    <id column="medicineNo" property="medicineno" jdbcType="VARCHAR" />
+    <result column="medicineName" property="medicinename" jdbcType="VARCHAR" />
+    <result column="medicineSpec" property="medicinespec" jdbcType="VARCHAR" />
+    <result column="medicineUnit" property="medicineunit" jdbcType="VARCHAR" />
+    <result column="medicineMadein" property="medicinemadein" jdbcType="VARCHAR" />
+    <result column="medicineInPrice" property="medicineinprice" jdbcType="DOUBLE" />
+    <result column="medicinePrice" property="medicineprice" jdbcType="DOUBLE" />
+    <result column="medicineNum" property="medicinenum" jdbcType="INTEGER" />
+    <result column="medicineType" property="medicinetype" jdbcType="VARCHAR" />
+    <result column="medicineRemarks" property="medicineremarks" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    medicineNo, medicineName, medicineSpec, medicineUnit, medicineMadein, medicineInPrice, 
+    medicinePrice, medicineNum, medicineType, medicineRemarks
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cicms.pojo.MedicineExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from medicine
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from medicine
+    where medicineNo = #{medicineno,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from medicine
+    where medicineNo = #{medicineno,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.cicms.pojo.MedicineExample" >
+    delete from medicine
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.cicms.pojo.Medicine" >
+    insert into medicine (medicineNo, medicineName, medicineSpec, 
+      medicineUnit, medicineMadein, medicineInPrice, 
+      medicinePrice, medicineNum, medicineType, 
+      medicineRemarks)
+    values (#{medicineno,jdbcType=VARCHAR}, #{medicinename,jdbcType=VARCHAR}, #{medicinespec,jdbcType=VARCHAR}, 
+      #{medicineunit,jdbcType=VARCHAR}, #{medicinemadein,jdbcType=VARCHAR}, #{medicineinprice,jdbcType=DOUBLE}, 
+      #{medicineprice,jdbcType=DOUBLE}, #{medicinenum,jdbcType=INTEGER}, #{medicinetype,jdbcType=VARCHAR}, 
+      #{medicineremarks,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cicms.pojo.Medicine" >
+    insert into medicine
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="medicineno != null" >
+        medicineNo,
+      </if>
+      <if test="medicinename != null" >
+        medicineName,
+      </if>
+      <if test="medicinespec != null" >
+        medicineSpec,
+      </if>
+      <if test="medicineunit != null" >
+        medicineUnit,
+      </if>
+      <if test="medicinemadein != null" >
+        medicineMadein,
+      </if>
+      <if test="medicineinprice != null" >
+        medicineInPrice,
+      </if>
+      <if test="medicineprice != null" >
+        medicinePrice,
+      </if>
+      <if test="medicinenum != null" >
+        medicineNum,
+      </if>
+      <if test="medicinetype != null" >
+        medicineType,
+      </if>
+      <if test="medicineremarks != null" >
+        medicineRemarks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="medicineno != null" >
+        #{medicineno,jdbcType=VARCHAR},
+      </if>
+      <if test="medicinename != null" >
+        #{medicinename,jdbcType=VARCHAR},
+      </if>
+      <if test="medicinespec != null" >
+        #{medicinespec,jdbcType=VARCHAR},
+      </if>
+      <if test="medicineunit != null" >
+        #{medicineunit,jdbcType=VARCHAR},
+      </if>
+      <if test="medicinemadein != null" >
+        #{medicinemadein,jdbcType=VARCHAR},
+      </if>
+      <if test="medicineinprice != null" >
+        #{medicineinprice,jdbcType=DOUBLE},
+      </if>
+      <if test="medicineprice != null" >
+        #{medicineprice,jdbcType=DOUBLE},
+      </if>
+      <if test="medicinenum != null" >
+        #{medicinenum,jdbcType=INTEGER},
+      </if>
+      <if test="medicinetype != null" >
+        #{medicinetype,jdbcType=VARCHAR},
+      </if>
+      <if test="medicineremarks != null" >
+        #{medicineremarks,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.cicms.pojo.MedicineExample" resultType="java.lang.Integer" >
+    select count(*) from medicine
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update medicine
+    <set >
+      <if test="record.medicineno != null" >
+        medicineNo = #{record.medicineno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.medicinename != null" >
+        medicineName = #{record.medicinename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.medicinespec != null" >
+        medicineSpec = #{record.medicinespec,jdbcType=VARCHAR},
+      </if>
+      <if test="record.medicineunit != null" >
+        medicineUnit = #{record.medicineunit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.medicinemadein != null" >
+        medicineMadein = #{record.medicinemadein,jdbcType=VARCHAR},
+      </if>
+      <if test="record.medicineinprice != null" >
+        medicineInPrice = #{record.medicineinprice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.medicineprice != null" >
+        medicinePrice = #{record.medicineprice,jdbcType=DOUBLE},
+      </if>
+      <if test="record.medicinenum != null" >
+        medicineNum = #{record.medicinenum,jdbcType=INTEGER},
+      </if>
+      <if test="record.medicinetype != null" >
+        medicineType = #{record.medicinetype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.medicineremarks != null" >
+        medicineRemarks = #{record.medicineremarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update medicine
+    set medicineNo = #{record.medicineno,jdbcType=VARCHAR},
+      medicineName = #{record.medicinename,jdbcType=VARCHAR},
+      medicineSpec = #{record.medicinespec,jdbcType=VARCHAR},
+      medicineUnit = #{record.medicineunit,jdbcType=VARCHAR},
+      medicineMadein = #{record.medicinemadein,jdbcType=VARCHAR},
+      medicineInPrice = #{record.medicineinprice,jdbcType=DOUBLE},
+      medicinePrice = #{record.medicineprice,jdbcType=DOUBLE},
+      medicineNum = #{record.medicinenum,jdbcType=INTEGER},
+      medicineType = #{record.medicinetype,jdbcType=VARCHAR},
+      medicineRemarks = #{record.medicineremarks,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cicms.pojo.Medicine" >
+    update medicine
+    <set >
+      <if test="medicinename != null" >
+        medicineName = #{medicinename,jdbcType=VARCHAR},
+      </if>
+      <if test="medicinespec != null" >
+        medicineSpec = #{medicinespec,jdbcType=VARCHAR},
+      </if>
+      <if test="medicineunit != null" >
+        medicineUnit = #{medicineunit,jdbcType=VARCHAR},
+      </if>
+      <if test="medicinemadein != null" >
+        medicineMadein = #{medicinemadein,jdbcType=VARCHAR},
+      </if>
+      <if test="medicineinprice != null" >
+        medicineInPrice = #{medicineinprice,jdbcType=DOUBLE},
+      </if>
+      <if test="medicineprice != null" >
+        medicinePrice = #{medicineprice,jdbcType=DOUBLE},
+      </if>
+      <if test="medicinenum != null" >
+        medicineNum = #{medicinenum,jdbcType=INTEGER},
+      </if>
+      <if test="medicinetype != null" >
+        medicineType = #{medicinetype,jdbcType=VARCHAR},
+      </if>
+      <if test="medicineremarks != null" >
+        medicineRemarks = #{medicineremarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where medicineNo = #{medicineno,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cicms.pojo.Medicine" >
+    update medicine
+    set medicineName = #{medicinename,jdbcType=VARCHAR},
+      medicineSpec = #{medicinespec,jdbcType=VARCHAR},
+      medicineUnit = #{medicineunit,jdbcType=VARCHAR},
+      medicineMadein = #{medicinemadein,jdbcType=VARCHAR},
+      medicineInPrice = #{medicineinprice,jdbcType=DOUBLE},
+      medicinePrice = #{medicineprice,jdbcType=DOUBLE},
+      medicineNum = #{medicinenum,jdbcType=INTEGER},
+      medicineType = #{medicinetype,jdbcType=VARCHAR},
+      medicineRemarks = #{medicineremarks,jdbcType=VARCHAR}
+    where medicineNo = #{medicineno,jdbcType=VARCHAR}
+  </update>
+</mapper>
