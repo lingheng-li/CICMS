@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chinasofti.mapper.LogMapper" >
+  <resultMap id="BaseResultMap" type="com.chinasofti.pojo.Log" >
+    <id column="logid" property="logid" jdbcType="INTEGER" />
+    <result column="medicineNo" property="medicineno" jdbcType="VARCHAR" />
+    <result column="medicineName" property="medicinename" jdbcType="VARCHAR" />
+    <result column="logremark" property="logremark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    logid, medicineNo, medicineName, logremark
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.chinasofti.pojo.LogExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from log
+    where logid = #{logid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from log
+    where logid = #{logid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.chinasofti.pojo.LogExample" >
+    delete from log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.chinasofti.pojo.Log" >
+    insert into log (logid, medicineNo, medicineName, 
+      logremark)
+    values (#{logid,jdbcType=INTEGER}, #{medicineno,jdbcType=VARCHAR}, #{medicinename,jdbcType=VARCHAR}, 
+      #{logremark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chinasofti.pojo.Log" >
+    insert into log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="logid != null" >
+        logid,
+      </if>
+      <if test="medicineno != null" >
+        medicineNo,
+      </if>
+      <if test="medicinename != null" >
+        medicineName,
+      </if>
+      <if test="logremark != null" >
+        logremark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="logid != null" >
+        #{logid,jdbcType=INTEGER},
+      </if>
+      <if test="medicineno != null" >
+        #{medicineno,jdbcType=VARCHAR},
+      </if>
+      <if test="medicinename != null" >
+        #{medicinename,jdbcType=VARCHAR},
+      </if>
+      <if test="logremark != null" >
+        #{logremark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.chinasofti.pojo.LogExample" resultType="java.lang.Integer" >
+    select count(*) from log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update log
+    <set >
+      <if test="record.logid != null" >
+        logid = #{record.logid,jdbcType=INTEGER},
+      </if>
+      <if test="record.medicineno != null" >
+        medicineNo = #{record.medicineno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.medicinename != null" >
+        medicineName = #{record.medicinename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.logremark != null" >
+        logremark = #{record.logremark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update log
+    set logid = #{record.logid,jdbcType=INTEGER},
+      medicineNo = #{record.medicineno,jdbcType=VARCHAR},
+      medicineName = #{record.medicinename,jdbcType=VARCHAR},
+      logremark = #{record.logremark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chinasofti.pojo.Log" >
+    update log
+    <set >
+      <if test="medicineno != null" >
+        medicineNo = #{medicineno,jdbcType=VARCHAR},
+      </if>
+      <if test="medicinename != null" >
+        medicineName = #{medicinename,jdbcType=VARCHAR},
+      </if>
+      <if test="logremark != null" >
+        logremark = #{logremark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where logid = #{logid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chinasofti.pojo.Log" >
+    update log
+    set medicineNo = #{medicineno,jdbcType=VARCHAR},
+      medicineName = #{medicinename,jdbcType=VARCHAR},
+      logremark = #{logremark,jdbcType=VARCHAR}
+    where logid = #{logid,jdbcType=INTEGER}
+  </update>
+</mapper>

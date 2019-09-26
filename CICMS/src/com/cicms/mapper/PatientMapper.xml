@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chinasofti.mapper.PatientMapper" >
+  <resultMap id="BaseResultMap" type="com.chinasofti.pojo.Patient" >
+    <id column="patientNo" property="patientno" jdbcType="VARCHAR" />
+    <result column="patientName" property="patientname" jdbcType="VARCHAR" />
+    <result column="patinentSex" property="patinentsex" jdbcType="VARCHAR" />
+    <result column="patientBirthday" property="patientbirthday" jdbcType="VARCHAR" />
+    <result column="patientPhone" property="patientphone" jdbcType="INTEGER" />
+    <result column="patientAddress" property="patientaddress" jdbcType="VARCHAR" />
+    <result column="patientRemarks" property="patientremarks" jdbcType="VARCHAR" />
+    <result column="patientTime" property="patienttime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    patientNo, patientName, patinentSex, patientBirthday, patientPhone, patientAddress, 
+    patientRemarks, patientTime
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.chinasofti.pojo.PatientExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from patient
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from patient
+    where patientNo = #{patientno,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from patient
+    where patientNo = #{patientno,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.chinasofti.pojo.PatientExample" >
+    delete from patient
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.chinasofti.pojo.Patient" >
+    insert into patient (patientNo, patientName, patinentSex, 
+      patientBirthday, patientPhone, patientAddress, 
+      patientRemarks, patientTime)
+    values (#{patientno,jdbcType=VARCHAR}, #{patientname,jdbcType=VARCHAR}, #{patinentsex,jdbcType=VARCHAR}, 
+      #{patientbirthday,jdbcType=VARCHAR}, #{patientphone,jdbcType=INTEGER}, #{patientaddress,jdbcType=VARCHAR}, 
+      #{patientremarks,jdbcType=VARCHAR}, #{patienttime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chinasofti.pojo.Patient" >
+    insert into patient
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="patientno != null" >
+        patientNo,
+      </if>
+      <if test="patientname != null" >
+        patientName,
+      </if>
+      <if test="patinentsex != null" >
+        patinentSex,
+      </if>
+      <if test="patientbirthday != null" >
+        patientBirthday,
+      </if>
+      <if test="patientphone != null" >
+        patientPhone,
+      </if>
+      <if test="patientaddress != null" >
+        patientAddress,
+      </if>
+      <if test="patientremarks != null" >
+        patientRemarks,
+      </if>
+      <if test="patienttime != null" >
+        patientTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="patientno != null" >
+        #{patientno,jdbcType=VARCHAR},
+      </if>
+      <if test="patientname != null" >
+        #{patientname,jdbcType=VARCHAR},
+      </if>
+      <if test="patinentsex != null" >
+        #{patinentsex,jdbcType=VARCHAR},
+      </if>
+      <if test="patientbirthday != null" >
+        #{patientbirthday,jdbcType=VARCHAR},
+      </if>
+      <if test="patientphone != null" >
+        #{patientphone,jdbcType=INTEGER},
+      </if>
+      <if test="patientaddress != null" >
+        #{patientaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="patientremarks != null" >
+        #{patientremarks,jdbcType=VARCHAR},
+      </if>
+      <if test="patienttime != null" >
+        #{patienttime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.chinasofti.pojo.PatientExample" resultType="java.lang.Integer" >
+    select count(*) from patient
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update patient
+    <set >
+      <if test="record.patientno != null" >
+        patientNo = #{record.patientno,jdbcType=VARCHAR},
+      </if>
+      <if test="record.patientname != null" >
+        patientName = #{record.patientname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.patinentsex != null" >
+        patinentSex = #{record.patinentsex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.patientbirthday != null" >
+        patientBirthday = #{record.patientbirthday,jdbcType=VARCHAR},
+      </if>
+      <if test="record.patientphone != null" >
+        patientPhone = #{record.patientphone,jdbcType=INTEGER},
+      </if>
+      <if test="record.patientaddress != null" >
+        patientAddress = #{record.patientaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.patientremarks != null" >
+        patientRemarks = #{record.patientremarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.patienttime != null" >
+        patientTime = #{record.patienttime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update patient
+    set patientNo = #{record.patientno,jdbcType=VARCHAR},
+      patientName = #{record.patientname,jdbcType=VARCHAR},
+      patinentSex = #{record.patinentsex,jdbcType=VARCHAR},
+      patientBirthday = #{record.patientbirthday,jdbcType=VARCHAR},
+      patientPhone = #{record.patientphone,jdbcType=INTEGER},
+      patientAddress = #{record.patientaddress,jdbcType=VARCHAR},
+      patientRemarks = #{record.patientremarks,jdbcType=VARCHAR},
+      patientTime = #{record.patienttime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chinasofti.pojo.Patient" >
+    update patient
+    <set >
+      <if test="patientname != null" >
+        patientName = #{patientname,jdbcType=VARCHAR},
+      </if>
+      <if test="patinentsex != null" >
+        patinentSex = #{patinentsex,jdbcType=VARCHAR},
+      </if>
+      <if test="patientbirthday != null" >
+        patientBirthday = #{patientbirthday,jdbcType=VARCHAR},
+      </if>
+      <if test="patientphone != null" >
+        patientPhone = #{patientphone,jdbcType=INTEGER},
+      </if>
+      <if test="patientaddress != null" >
+        patientAddress = #{patientaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="patientremarks != null" >
+        patientRemarks = #{patientremarks,jdbcType=VARCHAR},
+      </if>
+      <if test="patienttime != null" >
+        patientTime = #{patienttime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where patientNo = #{patientno,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chinasofti.pojo.Patient" >
+    update patient
+    set patientName = #{patientname,jdbcType=VARCHAR},
+      patinentSex = #{patinentsex,jdbcType=VARCHAR},
+      patientBirthday = #{patientbirthday,jdbcType=VARCHAR},
+      patientPhone = #{patientphone,jdbcType=INTEGER},
+      patientAddress = #{patientaddress,jdbcType=VARCHAR},
+      patientRemarks = #{patientremarks,jdbcType=VARCHAR},
+      patientTime = #{patienttime,jdbcType=TIMESTAMP}
+    where patientNo = #{patientno,jdbcType=VARCHAR}
+  </update>
+</mapper>
