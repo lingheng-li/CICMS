@@ -95,6 +95,11 @@
     from medicine
     where medicineNo = #{medicineno,jdbcType=VARCHAR}
   </select>
+    
+  <select id="selectAllMedicine" resultType="com.cicms.pojo.Medicine">
+  	select * from medicine
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from medicine
     where medicineNo = #{medicineno,jdbcType=VARCHAR}

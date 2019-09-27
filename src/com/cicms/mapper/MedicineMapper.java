@@ -17,6 +17,8 @@ public interface MedicineMapper {
     int insertSelective(Medicine record);
 
     List<Medicine> selectByExample(MedicineExample example);
+    
+    List<Medicine> selectAllMedicine();
 
     Medicine selectByPrimaryKey(String medicineno);
 

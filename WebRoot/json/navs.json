@@ -9,6 +9,11 @@
 	"href" : "page/news/newsList.html",
 	"spread" : false
 },{
+	"title" : "药品管理",
+	"icon" : "&#xe64c;",
+	"href" : "page/medicineManage/medicineList.jsp",
+	"spread" : false
+},{
 	"title" : "友情链接",
 	"icon" : "&#xe64c;",
 	"href" : "page/links/linksList.html",
