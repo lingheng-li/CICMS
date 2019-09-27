@@ -23,23 +23,25 @@
 <meta name="format-detection" content="telephone=no">
 <link rel="stylesheet" href="layui/css/layui.css" media="all" />
 <style type="text/css">
-.layui-form-item .layui-inline {
-	width: 33.333%;
-	float: left;
-	margin-right: 0;
-}
-
-@media ( max-width :1240px) {
 	.layui-form-item .layui-inline {
-		width: 100%;
-		float: none;
+		width: 33.333%;
+		float: left;
+		margin-right: 0;
 	}
-}
+	
+	@media ( max-width :1240px) {
+		.layui-form-item .layui-inline {
+			width: 100%;
+			float: none;
+		}
+	}
 </style>
+
+
 </head>
 <body class="childrenBody">
 
-	<form class="layui-form" style="width:80%;">
+	<form class="layui-form" style="width:90%;">
 
 		<div class="layui-form-item">
 			<label class="layui-form-label">药品名称</label>
@@ -49,20 +51,22 @@
 		</div>
 
 		<div class="layui-form-item">
-			<label class="layui-form-label">药品产地</label>
-			<div class="layui-input-block">
-				<input type="text" name="medicineMadein" class="layui-input medicineMadein" lay-verify="required">
-			</div>
-		</div>
 
-		<div class="layui-form-item">
+			<div class="layui-inline">
+				<label class="layui-form-label">药品产地</label>
+				<div class="layui-input-block">
+					<select name="medicineMadein" lay-verify="required">
+					<option value="0"></option>
+					</select>
+					<!-- <input type="text" name="medicineMadein" class="layui-input medicineMadein" lay-verify="required"> -->
+				</div>
+			</div>
 
 			<div class="layui-inline">
 				<label class="layui-form-label">药品类型</label>
 				<div class="layui-input-block">
-					<select name="medicineType">
-						<option value="0">呼吸科类</option>
-						<option value="1">心脑血管类</option>
+					<select name="medicineType" lay-verify="required">
+						<option value="0"></option>
 					</select>
 				</div>
 			</div>
@@ -71,11 +75,15 @@
 				<label class="layui-form-label">药品单位</label>
 				<div class="layui-input-block">
 					<select name="medicineUnit">
-						<option value="0">盒</option>
-						<option value="1">瓶</option>
+						<option value="盒">盒</option>
+						<option value="瓶">瓶</option>
 					</select>
 				</div>
 			</div>
+
+		</div>
+
+		<div class="layui-form-item">
 
 			<div class="layui-inline">
 				<div class="layui-form-item">
@@ -86,15 +94,11 @@
 				</div>
 			</div>
 
-		</div>
-
-		<div class="layui-form-item">
-
 			<div class="layui-inline">
 				<div class="layui-form-item">
 					<label class="layui-form-label">进价</label>
 					<div class="layui-input-block">
-						<input type="text" name="medicineInPrice" class="layui-input medicineInPrice" lay-verify="number">
+						<input type="number" name="medicineInPrice" class="layui-input medicineInPrice">
 					</div>
 				</div>
 
@@ -104,10 +108,11 @@
 				<div class="layui-form-item">
 					<label class="layui-form-label">售价</label>
 					<div class="layui-input-block">
-						<input type="text" name="medicinePrice" class="layui-input medicinePrice" lay-verify="number">
+						<input type="number" name="medicinePrice" class="layui-input medicinePrice">
 					</div>
 				</div>
 			</div>
+			
 		</div>
 
 		<div class="layui-form-item">
@@ -126,6 +131,59 @@
 
 	</form>
 	<script type="text/javascript" src="layui/layui.js"></script>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="page/medicineManage/addMedicine.js"></script>
+	
+	<script type="text/javascript">
+
+		layui.config({
+			base : "js/"
+		}).use(['form','layer','jquery'],function(){
+			var form = layui.form();
+			var layer = parent.layer === undefined ? layui.layer : parent.layer;
+			var $ = layui.jquery;
+			$form = $('form');
+			$(function(){
+			
+				$.ajax({
+		            url: "getMedicineTypeList.action",
+		            /* data: addMedicine, */
+		            contentType: "application/json;charset=UTF-8", //发送数据的格式
+		            type: "post",
+		            dataType: "json", //这是返回来是json，也就是回调json
+		            success: function(data){
+		                console.log(data);
+						//给medicineType下拉框添加值
+						var op='';
+						$.each(data, function (n, values) {
+							op += '<option value="'+values.medicinetypename+'">' + values.medicinetypename + '</option>';
+						});
+						$form.find('select[name=medicineType]').append(op);
+						form.render();
+		            }
+		        });
+		        
+		        $.ajax({
+		            url: "getMedicineMadeInList.action",
+		            contentType: "application/json;charset=UTF-8", //发送数据的格式
+		            type: "post",
+		            dataType: "json", //这是返回来是json，也就是回调json
+		            success: function(data){
+		                console.log(data);
+		                //给medicineMadein下拉框添加值
+						var op='';
+						$.each(data, function (n, values) {
+							op += '<option value="'+values.medicinemadeinname+'">' + values.medicinemadeinname + '</option>';
+						});
+						$form.find('select[name=medicineMadein]').append(op);
+						form.render();
+		            }
+		        });
+			
+			});
+		})
+	
+	</script>
+	
 </body>
 </html>

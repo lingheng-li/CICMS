@@ -10,10 +10,10 @@ layui.config({
 	var medicineData = '';
 	$.post("medicineList.action", function(data){
 		medicineData = data;
-		if(window.sessionStorage.getItem("addMedicine")){
+		/*if(window.sessionStorage.getItem("addMedicine")){
 			var addMedicine = window.sessionStorage.getItem("addMedicine");
 			medicineData = JSON.parse(addMedicine).concat(medicineData);
-		}
+		}*/
 		//执行加载数据的方法
 		medicineList();
 	})
@@ -29,12 +29,13 @@ layui.config({
 					type : "post",
 					dataType : "json",
 					success : function(data){
-						if(window.sessionStorage.getItem("addMedicine")){
+						/*if(window.sessionStorage.getItem("addMedicine")){
 							var addMedicine = window.sessionStorage.getItem("addMedicine");
 							medicineData = JSON.parse(addMedicine).concat(data);
 						}else{
 							medicineData = data;
-						}
+						}*/
+						medicineData = data;
 						for(var i=0;i<medicineData.length;i++){
 							var medicineStr = medicineData[i];
 							var selectStr = $(".search_input").val();

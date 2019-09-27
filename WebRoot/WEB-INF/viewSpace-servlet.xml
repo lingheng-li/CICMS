@@ -67,6 +67,16 @@
 			<property name="mapperInterface" value="com.cicms.mapper.MedicineMapper"></property> 
 			<property name="sqlSessionFactory" ref="sqlSessionFactoryBean" /> 
 		</bean>
+		
+		<bean id="medicinetypeMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"> 
+			<property name="mapperInterface" value="com.cicms.mapper.MedicinetypeMapper"></property> 
+			<property name="sqlSessionFactory" ref="sqlSessionFactoryBean" /> 
+		</bean>
+		
+		<bean id="medicinemadeinMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"> 
+			<property name="mapperInterface" value="com.cicms.mapper.MedicinemadeinMapper"></property> 
+			<property name="sqlSessionFactory" ref="sqlSessionFactoryBean" /> 
+		</bean>
 
 	<!-- =========================mappers========================= -->
 

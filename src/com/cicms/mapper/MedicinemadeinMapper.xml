@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cicms.mapper.MedicinemadeinMapper" >
+
+  <resultMap id="BaseResultMap" type="com.cicms.pojo.Medicinemadein" >
+    <id column="medicineMadeInId" property="medicinemadeinid" jdbcType="INTEGER" />
+    <result column="medicineMadeInName" property="medicinemadeinname" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    medicineMadeInId, medicineMadeInName
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from medicineMadeIn
+    where medicineMadeInId = #{medicinemadeinid,jdbcType=INTEGER}
+  </select>
+  
+  <select id="getMedicineMadeInList" resultType="com.cicms.pojo.Medicinemadein">
+  	select * from medicineMadeIn
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from medicineMadeIn
+    where medicineMadeInId = #{medicinemadeinid,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="com.cicms.pojo.Medicinemadein" >
+    insert into medicineMadeIn (medicineMadeInId, medicineMadeInName
+      )
+    values (#{medicinemadeinid,jdbcType=INTEGER}, #{medicinemadeinname,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cicms.pojo.Medicinemadein" >
+    insert into medicineMadeIn
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="medicinemadeinid != null" >
+        medicineMadeInId,
+      </if>
+      <if test="medicinemadeinname != null" >
+        medicineMadeInName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="medicinemadeinid != null" >
+        #{medicinemadeinid,jdbcType=INTEGER},
+      </if>
+      <if test="medicinemadeinname != null" >
+        #{medicinemadeinname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.cicms.pojo.Medicinemadein" >
+    update medicineMadeIn
+    <set >
+      <if test="medicinemadeinname != null" >
+        medicineMadeInName = #{medicinemadeinname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where medicineMadeInId = #{medicinemadeinid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cicms.pojo.Medicinemadein" >
+    update medicineMadeIn
+    set medicineMadeInName = #{medicinemadeinname,jdbcType=VARCHAR}
+    where medicineMadeInId = #{medicinemadeinid,jdbcType=INTEGER}
+  </update>
+
+</mapper>

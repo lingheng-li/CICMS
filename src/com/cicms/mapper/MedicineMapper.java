@@ -1,32 +1,24 @@
 package com.cicms.mapper;
 
-import com.cicms.pojo.Medicine;
-import com.cicms.pojo.MedicineExample;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
+
+import com.cicms.pojo.Medicine;
+import com.cicms.pojo.Medicinetype;
 
 public interface MedicineMapper {
-    int countByExample(MedicineExample example);
 
-    int deleteByExample(MedicineExample example);
+	int deleteByPrimaryKey(String medicineno);
 
-    int deleteByPrimaryKey(String medicineno);
+	int insert(Medicine record);
 
-    int insert(Medicine record);
+	int insertSelective(Medicine record);
 
-    int insertSelective(Medicine record);
+	List<Medicine> selectAllMedicine();
 
-    List<Medicine> selectByExample(MedicineExample example);
-    
-    List<Medicine> selectAllMedicine();
+	Medicine selectByPrimaryKey(String medicineno);
 
-    Medicine selectByPrimaryKey(String medicineno);
+	int updateByPrimaryKeySelective(Medicine record);
 
-    int updateByExampleSelective(@Param("record") Medicine record, @Param("example") MedicineExample example);
+	int updateByPrimaryKey(Medicine record);
 
-    int updateByExample(@Param("record") Medicine record, @Param("example") MedicineExample example);
-
-    int updateByPrimaryKeySelective(Medicine record);
-
-    int updateByPrimaryKey(Medicine record);
 }

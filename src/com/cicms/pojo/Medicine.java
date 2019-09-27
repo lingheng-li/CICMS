@@ -100,4 +100,12 @@ public class Medicine {
     public void setMedicineremarks(String medicineremarks) {
         this.medicineremarks = medicineremarks == null ? null : medicineremarks.trim();
     }
+
+	@Override
+	public String toString() {
+		return "Medicine [medicineno=" + medicineno + ", medicinename=" + medicinename + ", medicinespec="
+				+ medicinespec + ", medicineunit=" + medicineunit + ", medicinemadein=" + medicinemadein
+				+ ", medicineinprice=" + medicineinprice + ", medicineprice=" + medicineprice + ", medicinenum="
+				+ medicinenum + ", medicinetype=" + medicinetype + ", medicineremarks=" + medicineremarks + "]";
+	}
 }

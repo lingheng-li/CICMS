@@ -6,7 +6,15 @@ package com.cicms.service;
 import java.util.List;
 
 import com.cicms.pojo.Medicine;
+import com.cicms.pojo.Medicinemadein;
+import com.cicms.pojo.Medicinetype;
 
 public interface MedicineService {
 	List<Medicine> getAllMedicine();
+
+	int addMedicine(Medicine medicine);
+
+	List<Medicinetype> getMedicineTypeList();
+
+	List<Medicinemadein> getMedicineMadeInList();
 }

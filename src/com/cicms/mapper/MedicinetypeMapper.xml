@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cicms.mapper.MedicinetypeMapper" >
+  
+  <resultMap id="BaseResultMap" type="com.cicms.pojo.Medicinetype" >
+    <id column="medicineTypeId" property="medicinetypeid" jdbcType="INTEGER" />
+    <result column="medicineTypeName" property="medicinetypename" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    medicineTypeId, medicineTypeName
+  </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from medicinetype
+    where medicineTypeId = #{medicinetypeid,jdbcType=INTEGER}
+  </select>
+  
+  <select id="getMedicineTypeList" resultType="com.cicms.pojo.Medicinetype">
+  	select * from medicinetype
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from medicinetype
+    where medicineTypeId = #{medicinetypeid,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="com.cicms.pojo.Medicinetype" >
+    insert into medicinetype (medicineTypeId, medicineTypeName)
+    values (#{medicinetypeid,jdbcType=INTEGER}, #{medicinetypename,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cicms.pojo.Medicinetype" >
+    insert into medicinetype
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="medicinetypeid != null" >
+        medicineTypeId,
+      </if>
+      <if test="medicinetypename != null" >
+        medicineTypeName,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="medicinetypeid != null" >
+        #{medicinetypeid,jdbcType=INTEGER},
+      </if>
+      <if test="medicinetypename != null" >
+        #{medicinetypename,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.cicms.pojo.Medicinetype" >
+    update medicinetype
+    <set >
+      <if test="medicinetypename != null" >
+        medicineTypeName = #{medicinetypename,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where medicineTypeId = #{medicinetypeid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cicms.pojo.Medicinetype" >
+    update medicinetype
+    set medicineTypeName = #{medicinetypename,jdbcType=VARCHAR}
+    where medicineTypeId = #{medicinetypeid,jdbcType=INTEGER}
+  </update>
+
+</mapper>
