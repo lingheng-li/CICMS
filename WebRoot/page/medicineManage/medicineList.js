@@ -1,3 +1,4 @@
+var medicineId='666';
 layui.config({
 	base : "js/"
 }).use(['form','layer','jquery','laypage'],function(){
@@ -98,6 +99,38 @@ layui.config({
 		})
 		layui.layer.full(index);
 	})
+	
+	//打开编辑药品页面
+	//$(".medicine_edit").click(function(){
+	
+/*	$("body").on("click",".medicine_edit",function(){
+		var _this = $(this);
+		medicineId = _this.attr("data-id");
+		console.log(medicineId);
+	})*/
+	
+	$("body").on("click",".medicine_edit",function(){
+		var _this = $(this);
+		medicineId = _this.attr("data-id");
+		console.log(medicineId);
+		var index = layui.layer.open({
+			title : "修改药品",
+			type : 2,
+			content : "page/medicineManage/editMedicine.jsp",
+			success : function(layero, index){
+				setTimeout(function(){
+					layui.layer.tips('点击此处返回药品列表', '.layui-layer-setwin .layui-layer-close', {
+						tips: 3
+					});
+				},500)
+			}
+		})
+		// 改变窗口大小时，重置弹窗的高度，防止超出可视区域（如F12调出debug的操作）
+		$(window).resize(function(){
+			layui.layer.full(index);
+		})
+		layui.layer.full(index);
+	})
 
 	//TODO批量删除
 	$(".batchDel").click(function(){
@@ -149,11 +182,7 @@ layui.config({
 	})
 
 	//TODO操作
-	$("body").on("click",".users_edit",function(){  //编辑
-		layer.alert('您点击了会员编辑按钮，由于是纯静态页面，所以暂时不存在编辑内容，后期会添加，敬请谅解。。。',{icon:6, title:'文章编辑'});
-	})
-
-	$("body").on("click",".users_del",function(){  //删除
+	$("body").on("click",".medicine_del",function(){  //删除
 		var _this = $(this);
 		layer.confirm('确定删除此用户？',{icon:3, title:'提示信息'},function(index){
 			//_this.parents("tr").remove();
@@ -184,8 +213,8 @@ layui.config({
 			    	+  '<td>'+currData[i].medicinetype+'</td>'
 			    	+  '<td>'+currData[i].medicinemadein+'</td>'
 			    	+  '<td>'
-					+    '<a class="layui-btn layui-btn-mini users_edit"><i class="iconfont icon-edit"></i> 编辑</a>'
-					+    '<a class="layui-btn layui-btn-danger layui-btn-mini users_del" data-id="'+data[i].medicineno+'"><i class="layui-icon">&#xe640;</i> 删除</a>'
+					+    '<a class="layui-btn layui-btn-mini medicine_edit" data-id="'+data[i].medicineno+'"><i class="iconfont icon-edit"></i> 编辑</a>'
+					+    '<a class="layui-btn layui-btn-danger layui-btn-mini medicine_del" data-id="'+data[i].medicineno+'"><i class="layui-icon">&#xe640;</i> 删除</a>'
 			        +  '</td>'
 			    	+'</tr>';
 				}

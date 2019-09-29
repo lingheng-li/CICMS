@@ -17,4 +17,8 @@ public interface MedicineService {
 	List<Medicinetype> getMedicineTypeList();
 
 	List<Medicinemadein> getMedicineMadeInList();
+
+	Medicine getMedicineById(String medicineno);
+
+	int updateMedicine(Medicine updateMedicine);
 }

@@ -30,6 +30,18 @@ public class MedicineController {
 		List<Medicine> list = medicineService.getAllMedicine();
 		return list;
 	}
+	
+	@RequestMapping("/getMedicineById")
+	@ResponseBody
+	public Medicine getMedicineById(@RequestBody String medicineno) {
+		return medicineService.getMedicineById(medicineno);
+	}
+	
+	@RequestMapping("/updateMedicine")
+	@ResponseBody
+	public int updateMedicine(@RequestBody Medicine medicine) {
+		return medicineService.updateMedicine(medicine);
+	}
 
 	@RequestMapping("/addMedicine")
 	@ResponseBody

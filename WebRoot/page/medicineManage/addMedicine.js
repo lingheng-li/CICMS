@@ -31,6 +31,7 @@ layui.config({
  		addMedicine += '"medicinespec":"'+ $(".medicineSpec").val() +'",'; //药品规格
  		addMedicine += '"medicineinprice":"'+ $(".medicineInPrice").val() +'",'; //进价
  		addMedicine += '"medicineprice":"'+ $(".medicinePrice").val() +'",'; //售价
+ 		addMedicine += '"medicinenum":"'+ 0 +'",'; //数量
  		addMedicine += '"medicineremarks":"'+ $(".medicineRemarks").val() +'"}'; //备注
  		
  		//addMedicine += '"userEndTime":"'+ formatTime(new Date()) +'"}';  //时间

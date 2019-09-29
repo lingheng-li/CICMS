@@ -49,4 +49,14 @@ public class MedicineServiceImpl implements MedicineService {
 		return medicinemadeinMapper.getMedicineMadeInList();
 	}
 
+	@Override
+	public Medicine getMedicineById(String medicineno) {
+		return medicineMapper.selectByPrimaryKey(medicineno);
+	}
+
+	@Override
+	public int updateMedicine(Medicine updateMedicine) {
+		return medicineMapper.updateByPrimaryKey(updateMedicine);
+	}
+
 }
