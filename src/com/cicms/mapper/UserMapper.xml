@@ -240,4 +240,7 @@
       userRemarks = #{userremarks,jdbcType=VARCHAR}
     where userid = #{userid,jdbcType=INTEGER}
   </update>
+  <select id="selectByNameAndPwd" parameterType="com.cicms.pojo.User" resultType="com.cicms.pojo.User">
+  	select * from user where userName=#{username} and password=#{password}
+  </select>
 </mapper>

@@ -87,6 +87,11 @@
 			<property name="mapperInterface" value="com.cicms.mapper.MedicinemadeinMapper"></property> 
 			<property name="sqlSessionFactory" ref="sqlSessionFactoryBean" /> 
 		</bean>
+		
+		<bean id="userMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"> 
+			<property name="mapperInterface" value="com.cicms.mapper.UserMapper"></property> 
+			<property name="sqlSessionFactory" ref="sqlSessionFactoryBean" /> 
+		</bean> 
 
 	<!-- =========================mappers========================= -->
 
