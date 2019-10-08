@@ -58,10 +58,20 @@
 	</mvc:interceptors>
 
 	<!-- =========================mappers========================= -->
+		<bean id="takeMedicineMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"> 
+			<property name="mapperInterface" value="com.cicms.mapper.TakeMedicineMapper"></property> 
+			<property name="sqlSessionFactory" ref="sqlSessionFactoryBean" /> 
+		</bean>
 	
-	<!-- <bean id="blogMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"> 
-		<property name="mapperInterface" value="com.cicms.mapper.BlogMapper"></property> 
-		<property name="sqlSessionFactory" ref="sqlSessionFactoryBean" /> </bean> -->
+		<bean id="prescriptionMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"> 
+			<property name="mapperInterface" value="com.cicms.mapper.PrescriptionMapper"></property> 
+			<property name="sqlSessionFactory" ref="sqlSessionFactoryBean" /> 
+		</bean>	
+		
+		<bean id="paymentMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"> 
+			<property name="mapperInterface" value="com.cicms.mapper.PaymentMapper"></property> 
+			<property name="sqlSessionFactory" ref="sqlSessionFactoryBean" /> 
+		</bean>	
 		
 		<bean id="medicineMapper" class="org.mybatis.spring.mapper.MapperFactoryBean"> 
 			<property name="mapperInterface" value="com.cicms.mapper.MedicineMapper"></property> 

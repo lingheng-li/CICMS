@@ -11,6 +11,8 @@ public class Prescription {
 
     private String medicineno;
 
+    private String drawer;
+
     public Integer getId() {
         return id;
     }
@@ -49,5 +51,13 @@ public class Prescription {
 
     public void setMedicineno(String medicineno) {
         this.medicineno = medicineno == null ? null : medicineno.trim();
+    }
+
+    public String getDrawer() {
+        return drawer;
+    }
+
+    public void setDrawer(String drawer) {
+        this.drawer = drawer == null ? null : drawer.trim();
     }
 }

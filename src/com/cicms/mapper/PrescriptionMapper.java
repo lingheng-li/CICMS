@@ -17,6 +17,8 @@ public interface PrescriptionMapper {
     int insertSelective(Prescription record);
 
     List<Prescription> selectByExample(PrescriptionExample example);
+    
+    List<Prescription> selectByPrescriptionno(String prescriptionno);
 
     Prescription selectByPrimaryKey(Integer id);
 

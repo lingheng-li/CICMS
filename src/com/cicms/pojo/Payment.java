@@ -17,6 +17,8 @@ public class Payment {
 
     private String payremarks;
 
+    private Double money;
+
     public String getPayno() {
         return payno;
     }
@@ -71,5 +73,13 @@ public class Payment {
 
     public void setPayremarks(String payremarks) {
         this.payremarks = payremarks == null ? null : payremarks.trim();
+    }
+
+    public Double getMoney() {
+        return money;
+    }
+
+    public void setMoney(Double money) {
+        this.money = money;
     }
 }

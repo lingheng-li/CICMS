@@ -9,6 +9,7 @@
     <result column="payTime" property="paytime" jdbcType="TIMESTAMP" />
     <result column="payStatus" property="paystatus" jdbcType="INTEGER" />
     <result column="payRemarks" property="payremarks" jdbcType="VARCHAR" />
+    <result column="money" property="money" jdbcType="DOUBLE" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -69,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    payNo, patientNo, prescriptionNo, userName, payTime, payStatus, payRemarks
+    payNo, patientNo, prescriptionNo, userName, payTime, payStatus, payRemarks, money
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cicms.pojo.PaymentExample" >
     select
@@ -104,10 +105,10 @@
   <insert id="insert" parameterType="com.cicms.pojo.Payment" >
     insert into payment (payNo, patientNo, prescriptionNo, 
       userName, payTime, payStatus, 
-      payRemarks)
+      payRemarks, money)
     values (#{payno,jdbcType=VARCHAR}, #{patientno,jdbcType=VARCHAR}, #{prescriptionno,jdbcType=VARCHAR}, 
       #{username,jdbcType=VARCHAR}, #{paytime,jdbcType=TIMESTAMP}, #{paystatus,jdbcType=INTEGER}, 
-      #{payremarks,jdbcType=VARCHAR})
+      #{payremarks,jdbcType=VARCHAR}, #{money,jdbcType=DOUBLE})
   </insert>
   <insert id="insertSelective" parameterType="com.cicms.pojo.Payment" >
     insert into payment
@@ -133,6 +134,9 @@
       <if test="payremarks != null" >
         payRemarks,
       </if>
+      <if test="money != null" >
+        money,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="payno != null" >
@@ -155,6 +159,9 @@
       </if>
       <if test="payremarks != null" >
         #{payremarks,jdbcType=VARCHAR},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=DOUBLE},
       </if>
     </trim>
   </insert>
@@ -188,6 +195,9 @@
       <if test="record.payremarks != null" >
         payRemarks = #{record.payremarks,jdbcType=VARCHAR},
       </if>
+      <if test="record.money != null" >
+        money = #{record.money,jdbcType=DOUBLE},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -201,7 +211,8 @@
       userName = #{record.username,jdbcType=VARCHAR},
       payTime = #{record.paytime,jdbcType=TIMESTAMP},
       payStatus = #{record.paystatus,jdbcType=INTEGER},
-      payRemarks = #{record.payremarks,jdbcType=VARCHAR}
+      payRemarks = #{record.payremarks,jdbcType=VARCHAR},
+      money = #{record.money,jdbcType=DOUBLE}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -227,6 +238,9 @@
       <if test="payremarks != null" >
         payRemarks = #{payremarks,jdbcType=VARCHAR},
       </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=DOUBLE},
+      </if>
     </set>
     where payNo = #{payno,jdbcType=VARCHAR}
   </update>
@@ -237,7 +251,8 @@
       userName = #{username,jdbcType=VARCHAR},
       payTime = #{paytime,jdbcType=TIMESTAMP},
       payStatus = #{paystatus,jdbcType=INTEGER},
-      payRemarks = #{payremarks,jdbcType=VARCHAR}
+      payRemarks = #{payremarks,jdbcType=VARCHAR},
+      money = #{money,jdbcType=DOUBLE}
     where payNo = #{payno,jdbcType=VARCHAR}
   </update>
 </mapper>

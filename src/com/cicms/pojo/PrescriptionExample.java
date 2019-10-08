@@ -423,6 +423,76 @@ public class PrescriptionExample {
             addCriterion("medicineNo not between", value1, value2, "medicineno");
             return (Criteria) this;
         }
+
+        public Criteria andDrawerIsNull() {
+            addCriterion("drawer is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDrawerIsNotNull() {
+            addCriterion("drawer is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDrawerEqualTo(String value) {
+            addCriterion("drawer =", value, "drawer");
+            return (Criteria) this;
+        }
+
+        public Criteria andDrawerNotEqualTo(String value) {
+            addCriterion("drawer <>", value, "drawer");
+            return (Criteria) this;
+        }
+
+        public Criteria andDrawerGreaterThan(String value) {
+            addCriterion("drawer >", value, "drawer");
+            return (Criteria) this;
+        }
+
+        public Criteria andDrawerGreaterThanOrEqualTo(String value) {
+            addCriterion("drawer >=", value, "drawer");
+            return (Criteria) this;
+        }
+
+        public Criteria andDrawerLessThan(String value) {
+            addCriterion("drawer <", value, "drawer");
+            return (Criteria) this;
+        }
+
+        public Criteria andDrawerLessThanOrEqualTo(String value) {
+            addCriterion("drawer <=", value, "drawer");
+            return (Criteria) this;
+        }
+
+        public Criteria andDrawerLike(String value) {
+            addCriterion("drawer like", value, "drawer");
+            return (Criteria) this;
+        }
+
+        public Criteria andDrawerNotLike(String value) {
+            addCriterion("drawer not like", value, "drawer");
+            return (Criteria) this;
+        }
+
+        public Criteria andDrawerIn(List<String> values) {
+            addCriterion("drawer in", values, "drawer");
+            return (Criteria) this;
+        }
+
+        public Criteria andDrawerNotIn(List<String> values) {
+            addCriterion("drawer not in", values, "drawer");
+            return (Criteria) this;
+        }
+
+        public Criteria andDrawerBetween(String value1, String value2) {
+            addCriterion("drawer between", value1, value2, "drawer");
+            return (Criteria) this;
+        }
+
+        public Criteria andDrawerNotBetween(String value1, String value2) {
+            addCriterion("drawer not between", value1, value2, "drawer");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

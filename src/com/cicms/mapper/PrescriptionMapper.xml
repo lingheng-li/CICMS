@@ -7,6 +7,7 @@
     <result column="takeNum" property="takenum" jdbcType="INTEGER" />
     <result column="medicinePrice" property="medicineprice" jdbcType="DOUBLE" />
     <result column="medicineNo" property="medicineno" jdbcType="VARCHAR" />
+    <result column="drawer" property="drawer" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -67,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, prescriptionNo, takeNum, medicinePrice, medicineNo
+    id, prescriptionNo, takeNum, medicinePrice, medicineNo, drawer
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.cicms.pojo.PrescriptionExample" >
     select
@@ -82,6 +83,12 @@
     <if test="orderByClause != null" >
       order by ${orderByClause}
     </if>
+  </select>
+  <select id="selectByPrescriptionno" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	select
+  	<include refid="Base_Column_List" />
+    from prescription
+    where prescriptionNo = #{prescriptionNo,jdbcType=VARCHAR}
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -101,9 +108,11 @@
   </delete>
   <insert id="insert" parameterType="com.cicms.pojo.Prescription" >
     insert into prescription (id, prescriptionNo, takeNum, 
-      medicinePrice, medicineNo)
+      medicinePrice, medicineNo, drawer
+      )
     values (#{id,jdbcType=INTEGER}, #{prescriptionno,jdbcType=VARCHAR}, #{takenum,jdbcType=INTEGER}, 
-      #{medicineprice,jdbcType=DOUBLE}, #{medicineno,jdbcType=VARCHAR})
+      #{medicineprice,jdbcType=DOUBLE}, #{medicineno,jdbcType=VARCHAR}, #{drawer,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.cicms.pojo.Prescription" >
     insert into prescription
@@ -123,6 +132,9 @@
       <if test="medicineno != null" >
         medicineNo,
       </if>
+      <if test="drawer != null" >
+        drawer,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -139,6 +151,9 @@
       </if>
       <if test="medicineno != null" >
         #{medicineno,jdbcType=VARCHAR},
+      </if>
+      <if test="drawer != null" >
+        #{drawer,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -166,6 +181,9 @@
       <if test="record.medicineno != null" >
         medicineNo = #{record.medicineno,jdbcType=VARCHAR},
       </if>
+      <if test="record.drawer != null" >
+        drawer = #{record.drawer,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -177,7 +195,8 @@
       prescriptionNo = #{record.prescriptionno,jdbcType=VARCHAR},
       takeNum = #{record.takenum,jdbcType=INTEGER},
       medicinePrice = #{record.medicineprice,jdbcType=DOUBLE},
-      medicineNo = #{record.medicineno,jdbcType=VARCHAR}
+      medicineNo = #{record.medicineno,jdbcType=VARCHAR},
+      drawer = #{record.drawer,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -197,6 +216,9 @@
       <if test="medicineno != null" >
         medicineNo = #{medicineno,jdbcType=VARCHAR},
       </if>
+      <if test="drawer != null" >
+        drawer = #{drawer,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -205,7 +227,8 @@
     set prescriptionNo = #{prescriptionno,jdbcType=VARCHAR},
       takeNum = #{takenum,jdbcType=INTEGER},
       medicinePrice = #{medicineprice,jdbcType=DOUBLE},
-      medicineNo = #{medicineno,jdbcType=VARCHAR}
+      medicineNo = #{medicineno,jdbcType=VARCHAR},
+      drawer = #{drawer,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
