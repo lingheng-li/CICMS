@@ -21,4 +21,6 @@ public interface MedicineMapper {
 
 	int updateByPrimaryKey(Medicine record);
 
+	List<String> getMedicineNoList();
+
 }

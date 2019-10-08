@@ -25,4 +25,6 @@ public interface MedicineService {
 	int deleteMedicineById(String medicineno);
 
 	int batchDel(String[] ids);
+
+	List<String> getMedicineNoList();
 }

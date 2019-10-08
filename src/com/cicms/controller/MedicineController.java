@@ -56,6 +56,13 @@ public class MedicineController {
 	public int updateMedicine(@RequestBody Medicine medicine) {
 		return medicineService.updateMedicine(medicine);
 	}
+	
+	/*@RequestMapping("/bePutInStorage")
+	@ResponseBody
+	public int bePutInStorage(@RequestBody String num) {
+		//return medicineService.bePutInStorage(num);
+		return 2;
+	}*/
 
 	@RequestMapping("/addMedicine")
 	@ResponseBody
@@ -76,6 +83,12 @@ public class MedicineController {
 	@ResponseBody
 	public List<Medicinemadein> getMedicineMadeInList() {
 		return medicineService.getMedicineMadeInList();
+	}
+	
+	@RequestMapping("/getMedicineNoList")
+	@ResponseBody
+	public List<String> getMedicineNoList(){
+		return medicineService.getMedicineNoList();
 	}
 
 }

@@ -73,4 +73,9 @@ public class MedicineServiceImpl implements MedicineService {
 		return rows;
 	}
 
+	@Override
+	public List<String> getMedicineNoList() {
+		return medicineMapper.getMedicineNoList();
+	}
+
 }

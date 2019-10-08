@@ -4,21 +4,6 @@
 	"href" : "page/main.html",
 	"spread" : false
 },{
-	"title" : "患者处置",
-	"icon" : "&#xe64c;",
-	"href" : "create.action",
-	"spread" : false
-},{
-	"title" : "收款",
-	"icon" : "&#xe64c;",
-	"href" : "page/pay/payList.jsp",
-	"spread" : false
-},{
-	"title" : "取药",
-	"icon" : "&#xe64c;",
-	"href" : "page/pay/payList.jsp",
-	"spread" : false
-},{
 	"title" : "药品管理",
 	"icon" : "&#xe64c;",
 	"href" : "page/medicineManage/medicineList.jsp",

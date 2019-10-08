@@ -30,6 +30,9 @@
   <select id="selectAllMedicine" resultType="com.cicms.pojo.Medicine">
   	select * from medicine order by medicineNo
   </select>
+  <select id="getMedicineNoList" resultType="java.lang.String">
+  	select medicineNo from medicine
+  </select>
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
     delete from medicine

@@ -20,6 +20,7 @@ layui.config({
 		$.post("medicineList.action", function(data){
 			medicineData = data;
 			medicineList();
+			layer.msg("已刷新");
 		})
 	})
 
@@ -98,13 +99,34 @@ layui.config({
 		layui.layer.full(index);
 	})
 	
+	// 打开药品入库页面
+	$(".PIS_btn").click(function(){
+		var index = layui.layer.open({
+			title : "药品入库",
+			type : 2,
+			content : "page/medicineManage/bePutInStorage.jsp",
+			success : function(layero, index){
+				setTimeout(function(){
+					layui.layer.tips('点击此处返回药品列表', '.layui-layer-setwin .layui-layer-close', {
+						tips: 3
+					});
+				},500)
+			}
+		})
+		// 改变窗口大小时，重置弹窗的高度，防止超出可视区域（如F12调出debug的操作）
+		$(window).resize(function(){
+			layui.layer.full(index);
+		})
+		layui.layer.full(index);
+	})
+	
 	// 打开编辑药品页面	
 	$("body").on("click",".medicine_edit",function(){
 		var _this = $(this);
 		medicineId = _this.attr("data-id");
 		console.log(medicineId);
 		var index = layui.layer.open({
-			title : "修改药品",
+			title : "修改药品信息",
 			type : 2,
 			content : "page/medicineManage/editMedicine.jsp",
 			success : function(layero, index){
@@ -221,6 +243,7 @@ layui.config({
 		form.render('checkbox');
 	})
 
+	// 显示数据
 	function medicineList(){
 		//渲染数据
 		function renderDate(data,curr){
@@ -237,6 +260,7 @@ layui.config({
 			    	+  '<td>'+currData[i].medicineprice+'</td>'
 			    	+  '<td>'+currData[i].medicinespec+'</td>'
 			    	+  '<td>'+currData[i].medicineunit+'</td>'
+			    	+  '<td>'+currData[i].medicinenum+'</td>'
 			    	+  '<td>'+currData[i].medicinetype+'</td>'
 			    	+  '<td>'+currData[i].medicinemadein+'</td>'
 			    	+  '<td>'

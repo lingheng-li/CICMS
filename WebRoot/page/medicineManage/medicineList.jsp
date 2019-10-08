@@ -33,13 +33,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<a class="layui-btn layui-btn-normal medicineAdd_btn">新增药品</a>
 		</div>
 		<div class="layui-inline">
+			<a class="layui-btn layui-btn-normal PIS_btn">药品入库</a>
+		</div>
+		<div class="layui-inline">
 			<a class="layui-btn layui-btn-danger batchDel">批量删除</a>
 		</div>
-		<!-- <div class="layui-inline">
-			<div class="layui-form-mid layui-word-aux">　本页面刷新后除新添加的文章外所有操作无效，关闭页面所有数据重置</div>
-		</div> -->
 		<div class="layui-inline">
-			<a class="layui-btn layui-btn-normal refresh_btn"><i class="layui-icon">ဂ</i> 刷新</a>
+			<a class="layui-btn refresh_btn"><i class="layui-icon">ဂ</i> 刷新</a>
 		</div>
 	</blockquote>
 	<div class="layui-form medicine_list">
@@ -52,6 +52,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<col width="5%">
 				<col width="5%">
 				<col width="10%">
+				<col width="5%">
 				<col width="5%">
 				<col width="10%">
 				<col width="15%">
@@ -67,6 +68,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<th>售价</th>
 					<th>规格</th>
 					<th>单位</th>
+					<th>库存</th>
 					<th>药品类型</th>
 					<th>产地</th>
 					<th>操作</th>
