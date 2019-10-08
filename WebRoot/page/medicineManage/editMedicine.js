@@ -40,6 +40,7 @@ layui.config({
 		medicineData.medicineprice=data.field.medicinePrice;
 		medicineData.medicineinprice=data.field.medicineInPrice;
 		medicineData.medicineremarks=data.field.medicineRemarks;
+		medicineData.medicinespec=data.field.medicineSpec;
 		if(medicineData.medicinenum==null){
 			medicineData.medicinenum=0;
 		}

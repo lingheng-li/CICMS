@@ -21,4 +21,8 @@ public interface MedicineService {
 	Medicine getMedicineById(String medicineno);
 
 	int updateMedicine(Medicine updateMedicine);
+
+	int deleteMedicineById(String medicineno);
+
+	int batchDel(String[] ids);
 }

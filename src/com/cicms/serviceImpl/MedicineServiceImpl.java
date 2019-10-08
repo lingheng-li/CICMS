@@ -59,4 +59,18 @@ public class MedicineServiceImpl implements MedicineService {
 		return medicineMapper.updateByPrimaryKey(updateMedicine);
 	}
 
+	@Override
+	public int deleteMedicineById(String medicineno) {
+		return medicineMapper.deleteByPrimaryKey(medicineno);
+	}
+
+	@Override
+	public int batchDel(String[] ids) {
+		int rows = 0;
+		for (String id : ids) {
+			rows += medicineMapper.deleteByPrimaryKey(id);
+		}
+		return rows;
+	}
+
 }

@@ -30,13 +30,27 @@ public class MedicineController {
 		List<Medicine> list = medicineService.getAllMedicine();
 		return list;
 	}
-	
+
 	@RequestMapping("/getMedicineById")
 	@ResponseBody
 	public Medicine getMedicineById(@RequestBody String medicineno) {
 		return medicineService.getMedicineById(medicineno);
 	}
-	
+
+	@RequestMapping("/deleteMedicineById")
+	@ResponseBody
+	public int deleteMedicineById(@RequestBody String medicineno) {
+		return medicineService.deleteMedicineById(medicineno);
+	}
+
+	@RequestMapping("/batchDel")
+	@ResponseBody
+	public int batchDel(@RequestBody String medicinenos) {
+		String[] ids = medicinenos.split(",");
+		int success = medicineService.batchDel(ids);
+		return success == ids.length ? 1 : 0;
+	}
+
 	@RequestMapping("/updateMedicine")
 	@ResponseBody
 	public int updateMedicine(@RequestBody Medicine medicine) {

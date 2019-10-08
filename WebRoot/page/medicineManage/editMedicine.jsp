@@ -78,7 +78,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="layui-form-item">
 					<label class="layui-form-label">药品规格</label>
 					<div class="layui-input-block">
-						<input disabled type="text" id="medicineSpec" name="medicineSpec" class="layui-input medicineSpec" lay-verify="required">
+						<input type="text" id="medicineSpec" name="medicineSpec" class="layui-input medicineSpec" lay-verify="required">
 					</div>
 				</div>
 			</div>
@@ -114,7 +114,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<div class="layui-form-item">
 			<div class="layui-input-block">
 				<button class="layui-btn" lay-submit="" lay-filter="editMedicine">确认修改</button>
-				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+				<!-- <button type="reset" class="layui-btn layui-btn-primary">重置</button> -->
 			</div>
 		</div>
 

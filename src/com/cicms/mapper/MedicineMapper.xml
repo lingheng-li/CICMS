@@ -28,7 +28,7 @@
   </select>
   
   <select id="selectAllMedicine" resultType="com.cicms.pojo.Medicine">
-  	select * from medicine
+  	select * from medicine order by medicineNo
   </select>
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
