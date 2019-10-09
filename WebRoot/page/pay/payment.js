@@ -5,19 +5,24 @@ layui.config({
 		layer = parent.layer === undefined ? layui.layer : parent.layer,
 		$ = layui.jquery;
 		$form = $('form');
-		
+		var time;
 		
 		
 	    //确认收款
 	    form.on("submit(changePayment)",function(){
 			layer.confirm('确定收款？',{icon:3, title:'提示信息'},function(index){
 				layer.close(index);
-				var obj = {payno:$('#payno').val(),prescriptionno:$('#prescriptionno').val(),paystatus:"1"};
-		    	var date = JSON.stringify(obj);
+				var obj = {payno:$('#payno').val(),
+						prescriptionno:$('#prescriptionno').val(),
+						patientno:$('#patientno').val(),
+						username:$('#username').val(),
+						paytime:time,
+						paystatus:"1"};
+		    	var payment = JSON.stringify(obj);
 		    	$.ajax({
 		    	 	url: "updatePaymen.action",
 		    	 	contentType: "application/json;charset=UTF-8", //发送数据的格式
-		    	    data: date,
+		    	    data: payment,
 		    	    type: "post",
 		    	    dataType: "json", //这是返回来是json，也就是回调json
 		    	    success: function(data){
@@ -36,9 +41,10 @@ layui.config({
 	    	return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
 	    });
 		
+	    
 	    $(function(){
-	    	var time = formatTime($('#date').val());
-	    	$("#time").val(time);
+	    	time = new Date();
+	    	$("#time").val(formatTime(time));
 	    });
 	    
 	    function formatTime(_time){

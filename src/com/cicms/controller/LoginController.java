@@ -24,13 +24,13 @@ public class LoginController {
 			session.setAttribute("user", user1);
 			if(user1.getJurisdiction()==1){
 				//医生
-				return "Dindex.html";
+				return "redirect:Dindex.jsp";
 			}else if(user1.getJurisdiction()==2){
 				//药师
-				return "Mindex.html";
+				return "redirect:Mindex.jsp";
 			}else{
 				//管理员
-				return "index.html";
+				return "redirect:index.jsp";
 			}
 		}else{
 			return "login.jsp";

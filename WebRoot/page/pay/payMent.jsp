@@ -21,17 +21,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<style type="text/css">
 		.layui-form-item .layui-inline{ width:33.333%; float:left; margin-right:0; }
 		@media(max-width:1240px){
-			.layui-form-item .layui-inline{ width:100%; float:none; }
+			.layui-form-item .layui-inline{ width:33.333%; float:none; }
 		}
 	</style>
 </head>
 <body class="childrenBody">
 	<form class="layui-form">
 		<blockquote class="layui-elem-quote">
-			<div class="layui-inline">
-				<a class="layui-btn layui-btn-danger batchDel">批量删除</a>
-			</div>
-			<div class="layui-inline" style="margin-left: 15%;">
+			<div class="layui-inline" style="margin-left: 35%;">
 				<label class="layui-form-label">收款单编号</label>
 				<div class="layui-input-block">
 			    	<input type="text" id="payno" value="${payment.payno}" disabled class="layui-input layui-disabled">
@@ -45,22 +42,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<col>
 					<col>
 					<col>
-					<col>
-					<col>
-					<col>
-					<col>
-					<col>
 				</colgroup>
 				<thead>
 					<tr>
 						<th style="text-align">药品编号</th>
-						<th>药品名称</th>
-						<th>药品类型</th>
-						<th>药品规格</th>
-						<th>药品单位</th>
 						<th>药品价格</th>
 						<th>药品数量</th>
-						<th>药品产地</th>
 					</tr> 
 				</thead>
 				<tbody class="users_content">
@@ -69,11 +56,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    		<td>${prescription.medicineno}</td>
 			    		<td>${prescription.medicineprice}</td>
 			    		<td>${prescription.takenum}</td>
-			    		<td>${prescription}</td>
-			    		<td>${prescription}</td>
-			    		<td>${prescription}</td>
-			    		<td>${prescription}</td>
-			    		<td>${prescription}</td>
 			    	</tr>
 					</c:forEach>
 				</tbody>
@@ -84,8 +66,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div class="layui-inline">
 				<label class="layui-form-label">创建时间</label>
 			    <div class="layui-input-block">
-			    	<input type="hidden" id="date" value="${payment.paytime}" disabled class="layui-input layui-disabled">
-			    	<input type="text" id="time" disabled class="layui-input layui-disabled">
+			    	<input type="text" value="" id="time" disabled class="layui-input layui-disabled">
 			    </div>
 			</div>
 			<div class="layui-inline">
@@ -94,8 +75,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    	<input type="text" id="username" value="${user.username}" disabled class="layui-input layui-disabled">
 			    </div>
 			</div>
-		</div>
-		<div class="layui-form-item" style="margin-left: 15%;">
 			<div class="layui-inline">
 			    <label class="layui-form-label">患者编号</label>
 			    <div class="layui-input-block">
@@ -103,10 +82,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			    </div>
 			</div>
 			<div class="layui-inline">
-			    <label class="layui-form-label">患者姓名</label>
+			    <label class="layui-form-label">药品总价</label>
 			    <div class="layui-input-block">
-<%-- 			    	<input type="text" id="patientname" value="${payment.patientname}" placeholder="请输入真实姓名" class="layui-input layui-disabled">
- --%>			    </div>
+			    	<input type="text" id="money" value="${payment.money}" class="layui-input layui-disabled">
+			    </div>
 			</div>
 		</div>
 		<div class="layui-form-item" style="margin-left: 30%">
@@ -114,7 +93,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    	<c:if test="${payment.paystatus==0}">
 			    	<button class="layui-btn" lay-submit="" lay-filter="changePayment">确认收款</button>
 		    	</c:if>
-				<button type="reset" class="layui-btn layui-btn-primary">返回</button>
 		    </div>
 		</div>
 	</form>

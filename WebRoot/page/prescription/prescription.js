@@ -16,8 +16,8 @@ layui.config({
   	var i =1;
 	//添加行
 	$(".addRow").click(function(){
-		var rowTem= 
-				+ '<tr>'
+		var rowTem=+'<tr>'
+				+  '<tr>'
 		    	+  '<td><input type="checkbox" name="checked" lay-skin="primary" lay-filter="choose">'
 		    	+  '</td>'
 		    	+  '<td><div class="layui-input-inline">'
@@ -33,10 +33,11 @@ layui.config({
 		    	+  '<td width="50px"><input type="text" value="" id="medicinenum'+i+'" class="layui-input"></td>'
 		    	+  '<td id="medicinemadein'+i+'">'+'</td>'
 		    	+  '<td>'
-				+    '<a class="layui-btn layui-btn-danger layui-btn-mini del" id="del" data-id="'+i+'"><i class="layui-icon">&#xe640;</i> 删除</a>'
+				+  '<a class="layui-btn layui-btn-danger layui-btn-mini del" id="del" data-id="'+i+'"><i class="layui-icon">&#xe640;</i> 删除</a>'
 		        +  '</td>'
+		    	+'</tr>'
 		    	+'</tr>';
-			$("#tr").before(rowTem);
+			$("#t").before(rowTem);
 			$.post("medicineList.action", function(data){
 				medicineData = data;
 				//执行加载数据的方法

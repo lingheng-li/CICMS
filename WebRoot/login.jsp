@@ -75,8 +75,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						title: '最终的提交信息'
 					})
 					return false;
-				});*/
-
+				}); */
 			});
 		</script>
 	</body>

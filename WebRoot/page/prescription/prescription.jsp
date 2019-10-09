@@ -18,12 +18,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta name="format-detection" content="telephone=no">
 	<link rel="stylesheet" href="layui/css/layui.css" media="all" />
 	<link rel="stylesheet" href="css/user.css" media="all" />
-	<style type="text/css">
+ 	<style type="text/css">
 		.layui-form-item .layui-inline{ width:33.333%; float:left; margin-right:0; }
 		@media(max-width:1240px){
 			.layui-form-item .layui-inline{ width:100%; float:none; }
 		}
-	</style>
+	</style> 
 </head>
 <body class="childrenBody">
 	<form class="layui-form">
@@ -70,7 +70,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</tr> 
 				</thead>
 				<tbody class="users_content">
-					<input type="hidden" id="tr">
+					<input type="hidden" id="t">
 				</tbody>
 			</table>
 		</div>

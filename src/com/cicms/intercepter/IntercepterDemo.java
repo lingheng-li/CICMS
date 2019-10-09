@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cicms.pojo.User;
+
 /*
  * 2019年9月24日 @CH
  */
@@ -27,14 +29,14 @@ public class IntercepterDemo implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest req, HttpServletResponse res, Object obj) throws Exception {
 		// url : http://localhost:8080/SSM_Study03/blogList.form
 		// uri : /blogList.form
-		/*String requestURI = req.getRequestURI();
-		if (!requestURI.contains("/login.action")) {
-			String name = (String) req.getSession().getAttribute("USER_NAME");
-			if (null == name) {
-				res.sendRedirect(req.getContextPath() + "/login.action");
-				return false;
-			}
-		}*/
+//		String requestURI = req.getRequestURI();
+//		if (!requestURI.contains("/login.action")) {
+//			User user = (User) req.getSession().getAttribute("user");
+//			if (null == user) {
+//				res.sendRedirect(req.getContextPath() + "/login.jsp");
+//				return false;
+//			}
+//		}
 		return true;
 	}
 
